@@ -54,11 +54,11 @@ button.ghost{margin-top:10px;background:transparent;color:#A6A6A6;border:1px sol
 .screen.scroll{overflow-y:auto;align-items:flex-start;touch-action:pan-y;-webkit-overflow-scrolling:touch}
 .screen.scroll .card{margin:auto}
 .card.left{text-align:left}
-input[type=text],input[type=tel]{display:block;width:100%;margin-top:12px;padding:15px 14px;background:#161616;border:1px solid #262626;border-radius:7px;
+input[type=text],input[type=tel],input[type=email]{display:block;width:100%;margin-top:12px;padding:15px 14px;background:#161616;border:1px solid #262626;border-radius:7px;
   color:#fff;font:400 16px "Helvetica Neue",Helvetica,Arial,sans-serif;-webkit-user-select:text;user-select:text;outline:0;-webkit-appearance:none;appearance:none}
 #fName{margin-top:20px}
 input::placeholder{color:#5E5E5E}
-input[type=text]:focus,input[type=tel]:focus{border-color:#A6A6A6}
+input[type=text]:focus,input[type=tel]:focus,input[type=email]:focus{border-color:#A6A6A6}
 .chipLabel{margin-top:16px;text-align:left;font-size:10px;letter-spacing:1.6px;color:#7A7A7A;text-transform:uppercase}
 .chips{display:flex;gap:6px;margin-top:7px}
 button.chip{flex:1;width:auto;margin:0;padding:12px 0;background:#161616;color:#A6A6A6;border:1px solid #262626;font-size:12px;letter-spacing:.6px}
