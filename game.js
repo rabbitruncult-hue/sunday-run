@@ -13,7 +13,7 @@ const CFG = {
       runDay: 'Sunday 15 Nov',
       runShort: 'SUN 15 NOV',
       runLine: '6KM run. Sunday 15 Nov, 8am at Pink Dahlia, Saunders.',
-      playWhen: 'Saturday, from 12:00.',
+      playWhen: 'Saturday 12:00, on this link.',
       dropLine: 'Saturday 14 Nov at 12:00. Right here, on this link.',
       nextPlay: 'Saturday, 12:00',
       nextRun: 'Sunday 15 Nov, 8am'
