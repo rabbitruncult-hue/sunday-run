@@ -242,3 +242,8 @@ h1.oneline{white-space:nowrap;overflow:hidden}
 .clock span{margin-top:6px}
 
 .step small{max-width:112px}
+
+/* meet line under the title art */
+.hero{height:360px;background-size:720px 360px}
+.hero .meet{position:absolute;left:0;right:0;top:266px;font-family:"Anton",sans-serif;font-size:19px;letter-spacing:1.6px;text-transform:uppercase;color:#ffb054;transform:skewX(-9deg);text-shadow:2px 2px 0 #000}
+#full .hero,#over .hero{height:150px;background-position:center -180px}
