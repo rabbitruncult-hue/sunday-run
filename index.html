@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0A0A0A">
+<meta name="referrer" content="no-referrer">
+<title>Sunday Run Preview</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div style="position:fixed;top:0;left:0;right:0;z-index:99;padding:4px 0;background:#ff8a1f;color:#0b0b0c;font:700 11px Helvetica,Arial,sans-serif;letter-spacing:1px;text-align:center">PREVIEW. NOTHING IS SAVED OR SENT.</div>
+<canvas id="cv" aria-label="Hare Raiser game"></canvas>
+
+<div id="hud" class="hidden">
+  <div id="bar"><div id="barFill"></div></div>
+  <div id="hudRow">
+    <div id="lives" aria-label="Lives"><i></i><i></i><i></i></div>
+    <div id="km">0.0 K</div>
+    <div id="hudSpacer"></div>
+  </div>
+  <div id="carrotBar"><div id="carrotFill"></div></div>
+  <div id="carrotLabel"></div>
+</div>
+<div id="hint" class="hidden">Swipe or tap left and right. Grab the carrots.</div>
+
+<section id="signup" class="screen scroll hidden">
+  <form class="card" id="suForm" novalidate>
+    <div class="hero"><img class="lockup" src="assets/runcult-lockup-white.svg" alt="Rabbit Run Cult"><div class="presents">PRESENTS</div><img class="title6" src="assets/art/title-6km.webp" alt="6KM RUN. Sunday 15 Nov. 8am"></div>
+    <h1 class="shout">Everyone wins.</h1>
+    <p class="tag">Play Saturday. Collect Sunday.</p>
+    <div class="howto">
+      <div class="step"><span class="disc"><img src="assets/art/bib.webp" alt=""></span><b>SIGN UP</b><small>Now. 20 seconds.</small></div>
+      <div class="step"><span class="disc"><img src="assets/art/carrot.webp" alt=""></span><b>PLAY</b><small data-t="playWhen"></small></div>
+      <div class="step"><span class="disc"><img src="assets/art/kit.webp" alt=""></span><b>COLLECT</b><small>Sunday, at the run.</small></div>
+    </div>
+    <div class="sect"><span>YOU WIN 1 OF THESE 4</span></div>
+    <ul class="prizes" data-prizes></ul>
+    <p class="howline">One prize per player. You find out which one at the finish line.</p>
+    <div class="sect"><span>SAVE YOUR SPOT</span></div>
+    <input id="sName" type="text" autocomplete="name" autocapitalize="words" maxlength="30" placeholder="Name and surname" enterkeyhint="next" aria-label="Name and surname">
+    <input id="sCell" type="tel" inputmode="tel" autocomplete="tel" maxlength="17" placeholder="Cell number" enterkeyhint="done" aria-label="Cell number">
+    <p class="why">Sizes are for the Under Armour kit, in case it's yours.</p>
+    <div id="chipHost"></div>
+    <label class="tick"><input type="checkbox" id="sOk"><span>I can run on <b data-t="runDay"></b> and I accept the <a href="#" id="lnkTerms">T&amp;Cs</a>.</span></label>
+    <p id="sErr" class="err" role="alert"></p>
+    <button type="submit" id="btnSign" class="btn3d"><img src="assets/art/carrot.webp" alt=""><span class="big">SAVE MY SPOT</span><span class="tag hidden"></span></button>
+    <div class="runline" data-t="runLine"></div>
+  </form>
+</section>
+
+<section id="count" class="screen scroll hidden">
+  <div class="card">
+    <div class="hero"><img class="lockup" src="assets/runcult-lockup-white.svg" alt="Rabbit Run Cult"><div class="presents">PRESENTS</div><img class="title6" src="assets/art/title-6km.webp" alt="6KM RUN. Sunday 15 Nov. 8am"></div>
+    <h1 class="shout oneline" id="cHello">You're in.</h1>
+    <p class="tag">The game drops in</p>
+    <div class="clock" id="clock" aria-live="off">
+      <div><b id="cD">0</b><span>days</span></div><div><b id="cH">00</b><span>hours</span></div>
+      <div><b id="cM">00</b><span>min</span></div><div><b id="cS">00</b><span>sec</span></div>
+    </div>
+    <p class="howline" data-t="dropLine"></p>
+    <div class="sect"><span>WHAT HAPPENS NEXT</span></div>
+    <ol class="next">
+      <li><b data-t="nextPlay"></b>Come back to this same link and play Hare Raiser.</li>
+      <li><b>Everyone who plays wins one prize.</b>More carrots, better shot at the Under Armour kit.</li>
+      <li><b data-t="nextRun"></b>Run with us and collect your prize at the finish. No run, no prize.</li>
+    </ol>
+    <a id="lnkShare" class="btn3d" target="_blank" rel="noopener"><span class="big">TELL A FRIEND</span><span class="tag">WHATSAPP</span></a>
+    <div class="sect"><span>YOU WIN 1 OF THESE 4</span></div>
+    <ul class="prizes" data-prizes></ul>
+    <p class="howline">One prize per player. You find out which one at the finish line.</p>
+    <div class="fine">Keep this link. It turns into the game when the timer hits zero.</div>
+  </div>
+</section>
+
+<section id="full" class="screen scroll hidden">
+  <div class="card">
+    <div class="hero"><img class="lockup" src="assets/runcult-lockup-white.svg" alt="Rabbit Run Cult"></div>
+    <h1 class="shout">All spots are gone.</h1>
+    <p class="tag">That was quick!</p>
+    <p>Every prize for this Sunday has a rabbit. You can still come run with us: <span data-t="runLine"></span></p>
+    <p>Watch the Run Cult WhatsApp for the next drop.</p>
+    <button id="btnBackIn" class="linkbtn" type="button">Already signed up? Get back in</button>
+  </div>
+</section>
+
+<section id="over" class="screen scroll hidden">
+  <div class="card">
+    <div class="hero"><img class="lockup" src="assets/runcult-lockup-white.svg" alt="Rabbit Run Cult"></div>
+    <h1 class="shout">The game has closed.</h1>
+    <p>Played and said you're coming? Your prize is waiting: <span data-t="runLine"></span></p>
+    <p>Missed it? Come run anyway and catch the next drop.</p>
+  </div>
+</section>
+
+<section id="start" class="screen scroll hidden">
+  <div class="card">
+    <img class="lockup" src="assets/runcult-lockup-white.svg" alt="Rabbit Run Cult">
+    <div class="presents">PRESENTS</div>
+    <img class="logo3d" src="assets/art/title.webp" alt="Hare Raiser">
+    <p class="tag">Everyone wins!</p>
+    <div class="howto">
+      <div class="step"><span class="disc"><img src="assets/art/runner.webp" alt=""></span><b>RUN</b></div>
+      <div class="step"><span class="disc"><img src="assets/art/carrot.webp" alt=""></span><b>GRAB</b></div>
+      <div class="step"><span class="disc"><img src="assets/art/medal-s.webp" alt=""></span><b>WIN</b></div>
+    </div>
+    <p class="howline">You get one run. More carrots, better shot at the Under Armour kit.</p>
+    <div class="rulebox"><b>Everyone who plays wins one prize.</b> You collect it at the run on <span data-t="runDay"></span>. No run, no prize.</div>
+    <div class="sect"><span>YOU WIN 1 OF THESE 4</span></div>
+    <ul class="prizes" data-prizes></ul>
+    <button id="btnRun" class="btn3d" type="button"><img src="assets/art/carrot.webp" alt=""><span class="big">LET'S RUN</span><span class="tag">RUN 1 OF 3</span></button>
+    <div class="sponsors">
+      <span>PRIZES FROM</span>
+      <div class="logos"><img class="ua" src="assets/brand-logo-white.svg" alt="Under Armour"><i></i><img class="gr" src="assets/gypsy-rabbit-white.png" alt="Gypsy Rabbit"></div>
+    </div>
+    <div class="fine">3 hits and you bonk. One prize per person.<span class="testnote"> Test build.</span></div>
+  </div>
+</section>
+
+<section id="after" class="screen scroll hidden">
+  <div class="card">
+    <div class="label" id="afterLabel"></div>
+    <h1 id="afterTitle"></h1>
+    <p id="afterLine"></p>
+    <div class="haul"><img src="assets/art/carrot.webp" alt=""><b id="aRun">0</b><span>carrots<br>this run</span></div>
+    <div id="afterMeterWrap" class="meter"><div id="afterMeter"></div></div>
+    <p class="haulSub" id="aBest"></p>
+    <p id="afterStatus"></p>
+    <button id="btnCash" class="btn3d" type="button"><img src="assets/art/carrot.webp" alt=""><span class="big"></span><span class="tag"></span></button>
+    <button id="btnAgain" class="btn3d" type="button"><span class="big"></span><span class="tag"></span></button>
+    <div class="fine" id="afterNote"></div>
+  </div>
+</section>
+
+<section id="closed" class="screen scroll hidden">
+  <div class="card">
+    <img class="lockup" src="assets/runcult-lockup-white.svg" alt="Rabbit Run Cult">
+    <img class="logo3d" src="assets/art/title.webp" alt="Hare Raiser">
+    <h1>The game is closed for now.</h1>
+    <p class="tag">Back soon!</p>
+  </div>
+</section>
+
+<section id="terms" class="screen scroll hidden">
+  <div class="card left">
+    <div class="label">T&amp;CS</div>
+    <ul id="termsList"></ul>
+    <button id="btnTermsClose" type="button">Got it</button>
+  </div>
+</section>
+
+<section id="reveal" class="screen scroll hidden">
+  <div class="card">
+    <div id="shaker"><img src="assets/art/carrot.webp" alt="">
+      <p>Locking in your prize.</p></div>
+    <div id="prize" class="hidden">
+      <div class="pill ok" id="rPill">YOU WON A PRIZE</div>
+      <h1 class="shout" id="rTitle"></h1>
+      <p id="rLine"></p>
+      <div id="rAsk">
+        <div class="sect"><span>ARE YOU COMING?</span></div>
+        <p class="howline">Tell us now so we pack your prize.</p>
+        <button id="btnGo" class="btn3d" type="button"><span class="big">I'M COMING</span><span class="tag" data-t="runShort"></span></button>
+        <button id="btnPass" class="btn3d ghost" type="button"><span class="big">CAN'T MAKE IT</span><span class="tag">PASS MY PRIZE ON</span></button>
+      </div>
+      <div id="rGo" class="hidden">
+        <div class="label">SHOW THIS AT THE FINISH</div>
+        <div id="claimCode"></div>
+        <p class="howline">Screenshot this now. <span data-t="runLine"></span></p>
+        <button id="btnUndoGo" class="linkbtn" type="button">Plans changed? Pass my prize on</button>
+      </div>
+      <div id="rPass" class="hidden">
+        <p>Your prize goes to another rabbit. Catch the next drop.</p>
+        <button id="btnUndoPass" class="linkbtn" type="button">Actually, I can make it</button>
+      </div>
+      <p id="rErr" class="err" role="alert"></p>
+      <div id="rPrizes">
+        <div class="sect"><span>IT'S 1 OF THESE 4</span></div>
+        <ul class="prizes" data-prizes></ul>
+      </div>
+      <div class="fine testnote">Test build. Nothing is saved or sent yet.</div>
+    </div>
+  </div>
+</section>
+
+<script src="game.js"></script>
+</body>
+</html>

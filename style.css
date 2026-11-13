@@ -1,0 +1,242 @@
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;background:#0A0A0A;color:#fff;overflow:hidden;overscroll-behavior:none;
+  font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;-webkit-user-select:none;user-select:none;
+  -webkit-touch-callout:none;touch-action:none}
+#cv{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none}
+.hidden{display:none!important}
+
+#hud{position:fixed;left:0;right:0;top:0;padding:calc(env(safe-area-inset-top) + 10px) 16px 0;pointer-events:none}
+#bar{height:3px;background:#262626;border-radius:2px;overflow:hidden}
+#barFill{height:100%;width:0;background:#fff}
+#hudRow{display:flex;align-items:center;justify-content:space-between;margin-top:10px;
+  font-size:13px;letter-spacing:1.6px;color:#A6A6A6}
+#lives{display:flex;gap:6px;width:80px}
+#lives i{width:10px;height:10px;border-radius:50%;background:#fff;display:block}
+#lives i.gone{background:#2E2E2E}
+#km{font-weight:700;color:#fff}
+#hudSpacer{width:80px}
+#carrotBar{height:9px;margin-top:10px;background:#1b1b1b;border:1px solid #3a3a3a;border-radius:4px;overflow:hidden}
+#carrotFill{height:100%;width:0;background:linear-gradient(90deg,#ff6a00,#ffa53d);transition:width .15s}
+#carrotBar.full{border-color:#ffa53d;box-shadow:0 0 10px rgba(255,138,31,.6)}
+#carrotLabel{margin-top:6px;text-align:center;font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:#fff;text-shadow:0 1px 3px #000}
+#hint{position:fixed;left:0;right:0;bottom:calc(env(safe-area-inset-bottom) + 26px);text-align:center;
+  font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:#A6A6A6;pointer-events:none}
+
+.screen{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(10,10,10,.78);padding:calc(env(safe-area-inset-top) + 20px) 24px calc(env(safe-area-inset-bottom) + 20px)}
+.card{width:100%;max-width:360px;text-align:center}
+.lockup{width:74%;max-width:270px;height:auto}
+.with{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:14px}
+.with span{font-size:10px;letter-spacing:1.6px;color:#7A7A7A}
+.with img{height:26px;width:auto}
+.label{font-size:10px;letter-spacing:1.6px;color:#7A7A7A;text-transform:uppercase;
+  margin-top:30px;padding-bottom:10px;border-bottom:1px solid #2E2E2E}
+.card>.label:first-child{margin-top:0}
+h1{font-weight:300;font-size:32px;line-height:1.18;margin-top:18px}
+p{color:#A6A6A6;font-size:15px;line-height:1.5;margin-top:12px}
+p.stat{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:#7A7A7A}
+button{display:block;width:100%;margin-top:26px;padding:17px 0;border:0;border-radius:7px;background:#fff;color:#0A0A0A;
+  font:700 14px "Helvetica Neue",Helvetica,Arial,sans-serif;letter-spacing:2.4px;text-transform:uppercase;touch-action:manipulation}
+button:active{background:#A6A6A6}
+button.ghost{margin-top:10px;background:transparent;color:#A6A6A6;border:1px solid #262626}
+.fine{margin-top:16px;font-size:11px;color:#5E5E5E}
+.stats{display:flex;gap:8px;margin-top:22px}
+.stats div{flex:1;background:#161616;border:1px solid #262626;border-radius:7px;padding:14px 4px}
+.stats b{display:block;font-size:26px;font-weight:300}
+.stats span{display:block;margin-top:4px;font-size:10px;letter-spacing:.8px;color:#7A7A7A;text-transform:uppercase}
+
+#shaker img{width:130px;height:auto;display:block;margin:0 auto;animation:shake 1.1s ease-in-out infinite;filter:drop-shadow(0 0 22px rgba(255,138,31,.55))}
+@keyframes shake{0%,100%{transform:rotate(0)}15%{transform:rotate(-7deg)}30%{transform:rotate(7deg)}45%{transform:rotate(-9deg)}
+  60%{transform:rotate(9deg)}75%{transform:rotate(-5deg) scale(1.06)}90%{transform:rotate(5deg) scale(1.1)}}
+#prize{animation:rise .4s ease-out}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+.screen.scroll{overflow-y:auto;align-items:flex-start;touch-action:pan-y;-webkit-overflow-scrolling:touch}
+.screen.scroll .card{margin:auto}
+.card.left{text-align:left}
+input[type=text],input[type=tel]{display:block;width:100%;margin-top:12px;padding:15px 14px;background:#161616;border:1px solid #262626;border-radius:7px;
+  color:#fff;font:400 16px "Helvetica Neue",Helvetica,Arial,sans-serif;-webkit-user-select:text;user-select:text;outline:0;-webkit-appearance:none;appearance:none}
+#fName{margin-top:20px}
+input::placeholder{color:#5E5E5E}
+input[type=text]:focus,input[type=tel]:focus{border-color:#A6A6A6}
+.chipLabel{margin-top:16px;text-align:left;font-size:10px;letter-spacing:1.6px;color:#7A7A7A;text-transform:uppercase}
+.chips{display:flex;gap:6px;margin-top:7px}
+button.chip{flex:1;width:auto;margin:0;padding:12px 0;background:#161616;color:#A6A6A6;border:1px solid #262626;font-size:12px;letter-spacing:.6px}
+button.chip:active{background:#262626}
+button.chip.on{background:#fff;color:#0A0A0A;border-color:#fff}
+.tick{display:flex;gap:10px;align-items:flex-start;margin-top:18px;text-align:left;font-size:12px;line-height:1.45;color:#A6A6A6}
+.tick input{flex:none;width:20px;height:20px;margin-top:1px;accent-color:#fff}
+.tick a{color:#fff}
+.err{min-height:18px;margin-top:10px;font-size:13px;color:#fff}
+form button[type=submit]{margin-top:8px}
+button:disabled{background:#5E5E5E}
+a.btn{display:block;width:100%;margin-top:26px;padding:17px 0;border-radius:7px;background:#fff;color:#0A0A0A;text-decoration:none;
+  font:700 14px "Helvetica Neue",Helvetica,Arial,sans-serif;letter-spacing:2.4px;text-transform:uppercase}
+a.btn:active{background:#A6A6A6}
+#claim p{font-size:13px}
+#claimCode{margin-top:12px;padding:14px;background:#161616;border:1px dashed #5E5E5E;border-radius:7px;font-size:24px;font-weight:700;letter-spacing:4px;
+  -webkit-user-select:all;user-select:all}
+#claim a.btn{margin-top:12px}
+#termsList{margin:18px 0 0 18px;color:#A6A6A6;font-size:14px;line-height:1.5}
+#termsList li{margin-bottom:10px}
+.with img+img{height:34px}
+.rules,.prizes{list-style:none;margin-top:14px;text-align:left}
+.rules li{position:relative;padding:5px 0 5px 20px;color:#A6A6A6;font-size:14px;line-height:1.4}
+.rules li:before{content:"";position:absolute;left:3px;top:12px;width:6px;height:6px;border-radius:50%;background:#fff}
+.rules li:first-child,.rules li:nth-child(2){color:#fff}
+.prizes{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.prizes li{padding:8px 11px;background:#161616;border:1px solid #262626;border-radius:7px;font-size:12px;color:#fff}
+#start h1{font-size:30px}
+#start .label{margin-top:22px}
+.badge{margin-top:22px;padding:22px 16px 18px;background:#161616;border:1px solid #262626;border-radius:7px}
+.medal{position:relative;width:132px;height:150px;margin:0 auto;background:url(assets/art/medal.webp) center/contain no-repeat;
+  filter:drop-shadow(0 6px 18px rgba(255,170,40,.35))}
+.medal img{position:absolute;left:50%;top:63%;width:46%;height:auto;transform:translate(-50%,-50%)}
+.badgeTag{margin-top:20px;font-size:10px;letter-spacing:1.6px;color:#7A7A7A}
+.badgeTitle{margin-top:6px;font-size:22px;font-weight:700;line-height:1.2}
+.badge p{margin-top:8px;font-size:14px}
+#afterStatus{color:#fff}
+#won h1{font-weight:700}
+#start,#after,#out,#reveal{background:linear-gradient(180deg,rgba(10,10,10,.25) 0,rgba(10,10,10,.8) 30%,rgba(10,10,10,.9) 100%)}
+.rules li:before{background:#ff8a1f}
+.prizes li{border-color:#3a2a1a}
+.badgeTitle{color:#ffc35a}
+#won .label{color:#ffa53d;border-color:#ffa53d}
+#btnCash{background:#ff8a1f;color:#0A0A0A}
+#btnCash:active{background:#d96f10}
+
+/* v4: game look */
+@font-face{font-family:"Lilita";src:url(assets/fonts/lilita-one.woff2) format("woff2");font-display:swap}
+h1{font-family:"Lilita","Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:400;letter-spacing:.3px}
+#start .card{padding-bottom:8px}
+#start .lockup,#closed .lockup{width:38%;max-width:150px;margin-top:6px}
+#closed h1{font-size:30px;margin-top:10px}
+#closed p.tag{margin-top:8px;color:#ffb054}
+.presents{margin-top:8px;font-size:10px;letter-spacing:5px;color:#A6A6A6;padding-left:5px}
+.logo3d{display:block;width:108%;max-width:430px;margin:-2px -4% 0;height:auto;filter:drop-shadow(0 10px 24px rgba(255,120,20,.35));animation:bob 3.2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-5px) rotate(1deg)}}
+p.tag{margin-top:0;font-family:"Lilita",sans-serif;font-size:24px;color:#fff;letter-spacing:.4px}
+.howto{position:relative;display:flex;justify-content:space-between;margin:18px 6px 0}
+.howto:before{content:"";position:absolute;left:16%;right:16%;top:34px;border-top:3px dotted #ff8a1f;opacity:.8}
+.step{position:relative;flex:1;display:flex;flex-direction:column;align-items:center}
+.disc{width:68px;height:68px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 50% 35%,#2b2219,#121212 70%);border:2px solid #ff8a1f;box-shadow:0 0 18px rgba(255,138,31,.35),inset 0 -6px 12px rgba(0,0,0,.6)}
+.disc img{max-width:46px;max-height:50px;filter:drop-shadow(0 3px 6px rgba(0,0,0,.6))}
+.step b{margin-top:8px;font-family:"Lilita",sans-serif;font-weight:400;font-size:20px;letter-spacing:.6px;color:#fff}
+.step em{font-style:normal;color:#ff8a1f}
+p.howline{margin-top:10px;font-size:13px;color:#A6A6A6}
+.sect{display:flex;align-items:center;gap:10px;margin-top:24px}
+.sect:before,.sect:after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,#ff8a1f)}
+.sect:after{background:linear-gradient(90deg,#ff8a1f,transparent)}
+.sect span{font-family:"Lilita",sans-serif;font-size:18px;letter-spacing:1.2px;color:#ff8a1f}
+.prizes{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;list-style:none}
+.prizes li{display:flex;flex-direction:column;align-items:center;padding:12px 6px 12px;border-radius:14px;
+  background:radial-gradient(circle at 50% 30%,#2a1f15,#151515 75%);border:1px solid #3a2a1a;box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+.prizes li img{width:70px;height:70px;object-fit:contain;filter:drop-shadow(0 6px 10px rgba(0,0,0,.6))}
+.prizes li span{margin-top:6px;font-family:"Lilita",sans-serif;font-size:15px;letter-spacing:.3px;color:#fff;line-height:1.1}
+
+/* the 3D button */
+.btn3d{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:24px;padding:13px 16px 15px;
+  border:0;border-radius:18px;text-decoration:none;cursor:pointer;
+  background:linear-gradient(180deg,#ffb054 0%,#ff8a1f 45%,#f06d00 100%);
+  box-shadow:0 7px 0 #9c4200,0 12px 22px rgba(255,110,0,.35),inset 0 2px 0 rgba(255,255,255,.55),inset 0 -3px 0 rgba(0,0,0,.12);
+  overflow:hidden;transition:transform .08s,box-shadow .08s}
+.btn3d:after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);
+  transform:skewX(-20deg);animation:shine 2.8s ease-in-out infinite}
+@keyframes shine{0%,60%{left:-60%}100%{left:130%}}
+.btn3d:active{transform:translateY(5px);box-shadow:0 2px 0 #9c4200,0 4px 10px rgba(255,110,0,.3),inset 0 2px 0 rgba(255,255,255,.5)}
+.btn3d img{height:34px;width:auto;margin:-4px 0;filter:drop-shadow(0 2px 2px rgba(0,0,0,.35))}
+.btn3d .big{font-family:"Lilita",sans-serif;font-size:30px;line-height:1;letter-spacing:1px;color:#fff;
+  text-shadow:0 3px 0 #a84600,0 0 1px #a84600}
+.btn3d .tag{padding:5px 9px;border-radius:9px;background:rgba(10,10,10,.82);font:700 10px "Helvetica Neue",Helvetica,Arial,sans-serif;letter-spacing:1.4px;color:#ffb054}
+.btn3d.ghost{margin-top:16px;background:linear-gradient(180deg,#2a2a2a,#1a1a1a);border:0;
+  box-shadow:0 6px 0 #050505,inset 0 1px 0 rgba(255,255,255,.12)}
+.btn3d.ghost .big{font-size:22px;color:#e8e8e8;text-shadow:0 2px 0 #000}
+.btn3d.ghost .tag{color:#A6A6A6}
+.btn3d.ghost:after{display:none}
+.btn3d:disabled{filter:grayscale(1) brightness(.7)}
+#claim .btn3d{margin-top:14px}
+form .btn3d{margin-top:8px}
+#btnCash{background:linear-gradient(180deg,#ffb054 0%,#ff8a1f 45%,#f06d00 100%)}
+.sponsors{margin-top:30px}
+.sponsors span{display:block;font-size:9px;letter-spacing:3px;color:#7A7A7A}
+.sponsors .logos{display:inline-flex;align-items:center;gap:22px;margin-top:10px}
+.sponsors .logos i{width:1px;height:26px;background:#3a3a3a}
+.sponsors .ua{height:26px;width:auto}
+.sponsors .gr{height:44px;width:auto}
+#start .fine{margin-top:12px}
+
+/* after run */
+.haul{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:20px}
+.haul img{height:64px;width:auto;filter:drop-shadow(0 0 14px rgba(255,138,31,.5))}
+.haul b{font-family:"Lilita",sans-serif;font-weight:400;font-size:72px;line-height:1;color:#fff;text-shadow:0 4px 0 #a84600}
+.haul span{text-align:left;font-size:12px;letter-spacing:1.4px;text-transform:uppercase;color:#A6A6A6;line-height:1.3}
+.meter{height:10px;margin:14px 10px 0;background:#1b1b1b;border:1px solid #3a3a3a;border-radius:6px;overflow:hidden}
+.meter div{height:100%;width:0;background:linear-gradient(90deg,#ff6a00,#ffa53d)}
+.meter.full{border-color:#ffa53d;box-shadow:0 0 10px rgba(255,138,31,.6)}
+p.haulSub{margin-top:8px;font-size:13px}
+#afterStatus{font-family:"Lilita",sans-serif;font-size:19px;color:#fff;margin-top:14px}
+#afterTitle{font-size:44px}
+#btnRun{position:sticky;bottom:calc(env(safe-area-inset-bottom) + 14px);z-index:2}
+.sponsors .ua{height:32px}
+
+/* v6: Sunday prize run. Sign up, countdown, mystery prize. */
+.pill{display:inline-block;margin-top:14px;padding:6px 12px;border-radius:20px;border:1px solid #ff8a1f;color:#ffb054;font-size:11px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase}
+.pill.ok{background:#ff8a1f;color:#0A0A0A}
+h1.shout{font-size:44px;line-height:1.02;margin-top:12px;text-transform:uppercase}
+#signup .lockup,#count .lockup,#full .lockup,#over .lockup{width:38%;max-width:150px;margin-top:6px}
+#signup,#count,#full,#over{background:linear-gradient(180deg,rgba(10,10,10,.25) 0,rgba(10,10,10,.82) 26%,rgba(10,10,10,.92) 100%)}
+p.tag{margin-top:6px}
+.step small{margin-top:3px;font-size:11px;line-height:1.25;color:#A6A6A6;max-width:96px}
+.rulebox{margin-top:18px;padding:13px 14px;border-radius:12px;background:#1c140c;border:1px solid #ff8a1f;font-size:14px;line-height:1.45;color:#e8e8e8;text-align:left}
+.rulebox b{color:#fff}
+p.spots{margin-top:10px;font-family:"Lilita",sans-serif;font-size:19px;color:#ffb054}
+p.why{margin-top:16px;font-size:12px;text-align:left;color:#A6A6A6}
+#chipHost .chipLabel:first-child{margin-top:8px}
+#sName{margin-top:14px}
+.tick b{color:#fff}
+.runline{margin-top:20px;padding-top:14px;border-top:1px solid #2E2E2E;font-size:12px;line-height:1.5;color:#A6A6A6}
+.clock{display:flex;gap:8px;margin-top:12px}
+.clock div{flex:1;padding:12px 2px 10px;border-radius:14px;background:radial-gradient(circle at 50% 30%,#2a1f15,#151515 75%);border:1px solid #ff8a1f}
+.clock b{display:block;font-family:"Lilita",sans-serif;font-weight:400;font-size:38px;line-height:1;color:#fff;font-variant-numeric:tabular-nums}
+.clock span{display:block;margin-top:4px;font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:#A6A6A6}
+ol.next{list-style:none;counter-reset:n;margin-top:12px;text-align:left}
+ol.next li{position:relative;counter-increment:n;padding:9px 0 9px 44px;font-size:13px;line-height:1.4;color:#A6A6A6}
+ol.next li:before{content:counter(n);position:absolute;left:0;top:9px;width:32px;height:32px;border-radius:50%;border:2px solid #ff8a1f;
+  font:400 17px/28px "Lilita",sans-serif;text-align:center;color:#fff}
+ol.next b{display:block;color:#fff;font-size:15px}
+#count .btn3d{margin-top:18px}
+.linkbtn{margin-top:18px;padding:6px 0;background:none;color:#A6A6A6;font:400 13px "Helvetica Neue",Helvetica,Arial,sans-serif;letter-spacing:0;text-transform:none;text-decoration:underline}
+.linkbtn:active{background:none;color:#fff}
+#reveal h1.shout{font-size:38px}
+#rGo .label{margin-top:22px}
+
+.pill{display:table;margin:14px auto 0}
+
+h1.oneline{white-space:nowrap;overflow:hidden}
+#count h1.oneline{margin:34px 0 30px}
+.prizes li img.round{border-radius:50%}
+
+/* v8: minimalist design. A flat sun rising behind a one-line Table Mountain, on charcoal. */
+#start,#after,#reveal,#signup,#count,#full,#over{background:#0b0b0c}
+.hero{position:relative;height:215px;margin:0 -24px;background:url(assets/hero.svg) center top/720px 215px no-repeat;overflow:hidden}
+.hero .lockup{position:absolute;left:50%;top:112px;transform:translate(-50%,-50%);width:124px!important;max-width:none!important;margin:0!important;filter:drop-shadow(0 2px 5px rgba(110,45,0,.55))}
+.hero+h1.shout{margin-top:14px}
+#count .hero+h1.oneline{margin:22px 0 26px}
+
+/* v9: the run leads. Logo and PRESENTS, then the 6KM RUN title art over faint rings and the mountain line. */
+.hero{height:330px;background:url(assets/hero.svg) center top/720px 330px no-repeat}
+.hero .lockup{top:38px;width:92px!important;filter:none}
+.hero .presents{position:absolute;left:0;right:0;top:64px;margin:0;font-size:10px;letter-spacing:5px;padding-left:5px;color:#fff}
+.hero .title6{position:absolute;left:50%;top:99px;transform:translateX(-50%);width:340px!important;max-width:none!important;margin:0!important;filter:drop-shadow(0 8px 14px rgba(0,0,0,.55))}
+.hero~h1.shout{font-size:31px;margin-top:10px}
+.hero~p.tag{font-size:19px}
+#count .hero+h1.oneline{margin:14px 0 18px}
+#full .hero,#over .hero{height:150px;background-position:center -150px}
+
+/* v9b: countdown digits in the 6KM RUN title style: Anton, leaning forward, sunrise orange fill, hard black drop. */
+@font-face{font-family:"Anton";src:url(assets/fonts/anton.ttf) format("truetype");font-display:swap}
+.clock b{font-family:"Anton",sans-serif;font-size:44px;line-height:1.05;letter-spacing:1px;transform:skewX(-9deg);
+  background:linear-gradient(180deg,#ffc83d 0%,#ff9a1f 50%,#ff5e00 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(2px 3px 0 #000)}
+.clock span{margin-top:6px}
