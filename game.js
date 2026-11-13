@@ -529,11 +529,12 @@ function route() {
 $('suForm').addEventListener('submit', e => {
   e.preventDefault();
   if (busy) return;
-  const name = $('sName').value.trim().replace(/\s+/g, ' '), cell = normCell($('sCell').value);
+  const name = $('sName').value.trim().replace(/\s+/g, ' '), cell = normCell($('sCell').value), email = $('sMail').value.trim().toLowerCase();
   let err = '';
   if (name.length < 2 || !/^[\p{L} .'-]+$/u.test(name)) err = 'Pop in your name and surname.';
   else if (!/\S \S/.test(name)) err = 'Add your surname too, so we can find you on Sunday.';
   else if (!cell) err = 'That does not look like a South African cell number.';
+  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) || email.length > 80) err = 'That email does not look right.';
   else {
     for (const f of CFG.fields) if (!sel[f.key]) { err = 'Pick your ' + f.label.toLowerCase() + '.'; break; }
     if (!err && !$('sOk').checked) err = 'Tick the box to say you can run on ' + SUN.t.runDay + '.';
@@ -544,7 +545,7 @@ $('suForm').addEventListener('submit', e => {
   busy = true; btn.disabled = true; setBtn(btn, 'SAVING');
   if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
   const done = () => { busy = false; btn.disabled = false; setBtn(btn, 'SAVE MY SPOT'); };
-  API.signup({ campaign: CFG.campaign, name, cell, sizes: Object.assign({}, sel), dev: DEV, fp: FP }).then(r => {
+  API.signup({ campaign: CFG.campaign, name, cell, email, sizes: Object.assign({}, sel), dev: DEV, fp: FP }).then(r => {
     done();
     if (r && r.code === 'full') { spotsLeft = 0; backIn = false; route(); return; }
     if (!r || !r.ok) { $('sErr').textContent = FAIL[r && r.code] || 'Could not save your spot. Check your signal and try again.'; return; }
